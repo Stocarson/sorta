@@ -1,7 +1,7 @@
 import java.util.Random;
 
 
-public class Sort {
+public class Sorta {
 
   public static void main(String[] args) {
     Array test = new Array(20);
