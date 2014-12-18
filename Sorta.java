@@ -12,16 +12,16 @@ public class Sorta {
     test3.array = java.util.Arrays.copyOf(test.array, 20);
     test4.array = java.util.Arrays.copyOf(test.array, 20);
 
+    /*
     System.out.println("Insertion Sort");
     test.iSort();
     System.out.println("\nMerge Sort");
     test2.mSort();
     System.out.println("\nHeap Sort");
     test3.hSort();
-    /*
+    */
     System.out.println("\nQuick Sort");
     test4.qSort();
-    */
   }
 
   static class Array {
@@ -80,7 +80,6 @@ public class Sorta {
     }
 
     private void merge(int start, int middle, int end) {
-      //System.out.println("Chiamata merge su "+start+" "+middle+" "+end);
       int[] left = new int[this.array.length];
       int[] right = new int[this.array.length];
       int i = 0;
@@ -112,7 +111,6 @@ public class Sorta {
       i = 0; //1100 0001 0000    SOQQUADRO
       j = 0;
       for(int k = start; k < end; k++) {
-        //System.out.println("Left vale "+left[i]+" Right vale "+right[j]+"End vale "+end);
         if(left[i] <= right[j]) {
           this.array[k] = left[i];
           i++;
@@ -144,7 +142,7 @@ public class Sorta {
     }
 
     private int parent(int index) {
-      // Gestisce il ritorno all'indice 0 del vettore.
+      // Handles return to element 0.
       if(index == 1 || index == 2)
         return 0;
       else
@@ -169,12 +167,12 @@ public class Sorta {
       int right = right(index);
       int max = 0;
       int buffer = 0;
-      // Controlla se il figlio di sinistra è maggiore della radice.
+      // Checks if left son is greater than his father.
       if(left < this.heapSize && this.array[left] > this.array[index])
         max = left;
       else
         max = index;
-      // Controlla se il figlio di destra è maggiore del massimo.
+      // Checks if right son is greater than the previous maximum.
       if(right < this.heapSize && this.array[right] > this.array[max])
         max = right;
       if(max != index) {
@@ -187,7 +185,7 @@ public class Sorta {
     }
 
     private void buildMaxHeap() {
-      // Sia heapSize che length sono cardinali (esclusivi).
+      // heapSize and length are exclusive (and cardinal).
       this.heapSize = this.array.length;
       for(int i = (this.heapSize / 2) - 1; i >= 0; i--) {
         maxHeapify(i);
@@ -199,12 +197,14 @@ public class Sorta {
     }
 
     private void quickSort(int start, int end) {
+      // As usual end index is exclusive.
       if(start < end) {
-        System.out.println("Avvio quickSort con start="+start+" e end="+end);
+        //System.out.println("Avvio quickSort con start="+start+" e end="+end);
         this.show();
         int middle = partition(start, end);
+        //System.out.println("Middle vale="+middle);
         quickSort(start, middle);
-        quickSort(middle, end);
+        quickSort(middle + 1, end);
       }
     }
 
@@ -212,7 +212,7 @@ public class Sorta {
       int pivot = this.array[end - 1];
       int pointer = start;
       int buffer = 0;
-      for(int i = start + 1; i < end - 1; i++) {
+      for(int i = start; i < end - 1; i++) {
         if(this.array[i] <= pivot) {
           buffer = this.array[pointer];
           this.array[pointer] = this.array[i];
