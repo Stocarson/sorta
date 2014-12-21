@@ -12,14 +12,12 @@ public class Sorta {
     test3.array = java.util.Arrays.copyOf(test.array, 20);
     test4.array = java.util.Arrays.copyOf(test.array, 20);
 
-    /*
     System.out.println("Insertion Sort");
     test.iSort();
     System.out.println("\nMerge Sort");
     test2.mSort();
     System.out.println("\nHeap Sort");
     test3.hSort();
-    */
     System.out.println("\nQuick Sort");
     test4.qSort();
   }
@@ -72,10 +70,10 @@ public class Sorta {
     // start is inclusive, end is exclusive.
     private void mergeSort(int start, int end) {
       if ((end - start) > 1) {
-        int middle = (end - start) / 2;
-        mergeSort(start, start + middle);
-        mergeSort(start + middle, end);
-        merge(start, start + middle, end);
+        int middle = (end + start) / 2;
+        mergeSort(start, middle);
+        mergeSort(middle, end);
+        merge(start, middle, end);
       }
     }
 
